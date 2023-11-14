@@ -5,7 +5,7 @@ export class ControladorRentas{
     }
 
     async buscarTodas(request,response){
-        let ServicioRentas=new ServicioRentas();
+        let servicioRentas=new ServicioRentas();
         try{
             //1. Hay que recibir datos? R: No
             //2. Intentar conectarme a la BD
@@ -13,7 +13,7 @@ export class ControladorRentas{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Rentas",
-                "datos" : await ServicioRentas.buscarTodas()
+                "datos" : await servicioRentas.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -24,7 +24,7 @@ export class ControladorRentas{
         }
     }
     async buscarPorId(request,response){
-        let ServicioRentas=new ServicioRentas();
+        let servicioRentas=new ServicioRentas();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params (URL)
@@ -34,7 +34,7 @@ export class ControladorRentas{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Rentas",
-                "datos" : await ServicioRentas.buscarPorId(id)
+                "datos" : await servicioRentas.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -46,13 +46,13 @@ export class ControladorRentas{
     }
     async modificar(request,response){
         try{
-            let ServicioRentas = new ServicioRentas();
+            let servicioRentas = new ServicioRentas();
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params = id, Body = datos de la habitacion
             let id = request.params.id
             let datosModificar = request.body
             //3. Conectarme al BD y mandar los datos recibidos para modificar
-            await ServicioRentas.modificar(id, datosModificar) // antes de la respuesta
+            await servicioRentas.modificar(id, datosModificar) // antes de la respuesta
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -68,7 +68,7 @@ export class ControladorRentas{
         }
     }
     async registrar(request,response){
-        let ServicioRentas = new ServicioRentas();
+        let servicioRentas = new ServicioRentas();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Body = datos de la habitacion
@@ -76,7 +76,7 @@ export class ControladorRentas{
             //3. Conectarme al BD y registrar los datos
             // tomar 2 fechas del objeto datos
             // la diferencia en dias de esas dos fechas
-            await ServicioRentas.registrar(datosRegistrar)
+            await servicioRentas.registrar(datosRegistrar)
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -92,13 +92,13 @@ export class ControladorRentas{
         }
     }
     async eliminar(request,response){
-        let ServicioRentas = new ServicioRentas();
+        let servicioRentas = new ServicioRentas();
         try{
             //1. Hay que recibir datos? R:Si
             //2. Por donde se reciben los datos? Params = id
             let id = request.params.id
             //3. Conectarme al BD y eliminarlo
-            await ServicioRentas.eliminar(id); //eliminar
+            await servicioRentas.eliminar(id); //eliminar
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",

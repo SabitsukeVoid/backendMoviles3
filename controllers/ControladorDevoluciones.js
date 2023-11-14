@@ -5,7 +5,7 @@ export class ControladorDevoluciones{
     }
 
     async buscarTodas(request,response){
-        let ServicioDevoluciones=new ServicioDevoluciones();
+        let servicioDevoluciones=new ServicioDevoluciones();
         try{
             //1. Hay que recibir datos? R: No
             //2. Intentar conectarme a la BD
@@ -13,7 +13,7 @@ export class ControladorDevoluciones{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Devoluciones",
-                "datos" : await ServicioDevoluciones.buscarTodas()
+                "datos" : await servicioDevoluciones.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -24,7 +24,7 @@ export class ControladorDevoluciones{
         }
     }
     async buscarPorId(request,response){
-        let ServicioDevoluciones=new ServicioDevoluciones();
+        let servicioDevoluciones=new ServicioDevoluciones();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params (URL)
@@ -34,7 +34,7 @@ export class ControladorDevoluciones{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Devoluciones",
-                "datos" : await ServicioDevoluciones.buscarPorId(id)
+                "datos" : await servicioDevoluciones.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -46,13 +46,13 @@ export class ControladorDevoluciones{
     }
     async modificar(request,response){
         try{
-            let ServicioDevoluciones = new ServicioDevoluciones();
+            let servicioDevoluciones = new ServicioDevoluciones();
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params = id, Body = datos de la habitacion
             let id = request.params.id
             let datosModificar = request.body
             //3. Conectarme al BD y mandar los datos recibidos para modificar
-            await ServicioDevoluciones.modificar(id, datosModificar) // antes de la respuesta
+            await servicioDevoluciones.modificar(id, datosModificar) // antes de la respuesta
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -68,7 +68,7 @@ export class ControladorDevoluciones{
         }
     }
     async registrar(request,response){
-        let ServicioDevoluciones = new ServicioDevoluciones();
+        let servicioDevoluciones = new ServicioDevoluciones();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Body = datos de la habitacion
@@ -76,7 +76,7 @@ export class ControladorDevoluciones{
             //3. Conectarme al BD y registrar los datos
             // tomar 2 fechas del objeto datos
             // la diferencia en dias de esas dos fechas
-            await ServicioDevoluciones.registrar(datosRegistrar)
+            await servicioDevoluciones.registrar(datosRegistrar)
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -92,13 +92,13 @@ export class ControladorDevoluciones{
         }
     }
     async eliminar(request,response){
-        let ServicioDevoluciones = new ServicioDevoluciones();
+        let servicioDevoluciones = new ServicioDevoluciones();
         try{
             //1. Hay que recibir datos? R:Si
             //2. Por donde se reciben los datos? Params = id
             let id = request.params.id
             //3. Conectarme al BD y eliminarlo
-            await ServicioDevoluciones.eliminar(id); //eliminar
+            await servicioDevoluciones.eliminar(id); //eliminar
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",

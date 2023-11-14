@@ -5,7 +5,7 @@ export class ControladorCarros{
     }
 
     async buscarTodas(request,response){
-        let ServicioCarros=new ServicioCarros();
+        let servicioCarros=new ServicioCarros();
         try{
             //1. Hay que recibir datos? R: No
             //2. Intentar conectarme a la BD
@@ -13,7 +13,7 @@ export class ControladorCarros{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Carros",
-                "datos" : await ServicioCarros.buscarTodas()
+                "datos" : await servicioCarros.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -24,7 +24,7 @@ export class ControladorCarros{
         }
     }
     async buscarPorId(request,response){
-        let ServicioCarros=new ServicioCarros();
+        let servicioCarros=new ServicioCarros();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params (URL)
@@ -34,7 +34,7 @@ export class ControladorCarros{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Carros",
-                "datos" : await ServicioCarros.buscarPorId(id)
+                "datos" : await servicioCarros.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -46,13 +46,13 @@ export class ControladorCarros{
     }
     async modificar(request,response){
         try{
-            let ServicioCarros = new ServicioCarros();
+            let servicioCarros = new ServicioCarros();
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params = id, Body = datos de la habitacion
             let id = request.params.id
             let datosModificar = request.body
             //3. Conectarme al BD y mandar los datos recibidos para modificar
-            await ServicioCarros.modificar(id, datosModificar) // antes de la respuesta
+            await servicioCarros.modificar(id, datosModificar) // antes de la respuesta
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -68,7 +68,7 @@ export class ControladorCarros{
         }
     }
     async registrar(request,response){
-        let ServicioCarros = new ServicioCarros();
+        let servicioCarros = new ServicioCarros();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Body = datos de la habitacion
@@ -76,7 +76,7 @@ export class ControladorCarros{
             //3. Conectarme al BD y registrar los datos
             // tomar 2 fechas del objeto datos
             // la diferencia en dias de esas dos fechas
-            await ServicioCarros.registrar(datosRegistrar)
+            await servicioCarros.registrar(datosRegistrar)
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -92,13 +92,13 @@ export class ControladorCarros{
         }
     }
     async eliminar(request,response){
-        let ServicioCarros = new ServicioCarros();
+        let servicioCarros = new ServicioCarros();
         try{
             //1. Hay que recibir datos? R:Si
             //2. Por donde se reciben los datos? Params = id
             let id = request.params.id
             //3. Conectarme al BD y eliminarlo
-            await ServicioCarros.eliminar(id); //eliminar
+            await servicioCarros.eliminar(id); //eliminar
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",

@@ -5,7 +5,7 @@ export class ControladorUsuarios{
     }
 
     async buscarTodas(request,response){
-        let ServicioUsuarios=new ServicioUsuarios();
+        let servicioUsuarios=new ServicioUsuarios();
         try{
             //1. Hay que recibir datos? R: No
             //2. Intentar conectarme a la BD
@@ -13,7 +13,7 @@ export class ControladorUsuarios{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los Usuarios",
-                "datos" : await ServicioUsuarios.buscarTodas()
+                "datos" : await servicioUsuarios.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -24,7 +24,7 @@ export class ControladorUsuarios{
         }
     }
     async buscarPorId(request,response){
-        let ServicioUsuarios=new ServicioUsuarios();
+        let servicioUsuarios=new ServicioUsuarios();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params (URL)
@@ -34,7 +34,7 @@ export class ControladorUsuarios{
             response.status(200).json({
                 // "estado" : "true",
                 "mensaje" : "Exito buscando los usuarios",
-                "datos" : await ServicioUsuarios.buscarPorId(id)
+                "datos" : await servicioUsuarios.buscarPorId(id)
             })
         }catch(error){
             response.status(400).json({
@@ -46,13 +46,13 @@ export class ControladorUsuarios{
     }
     async modificar(request,response){
         try{
-            let ServicioUsuarios = new ServicioUsuarios();
+            let servicioUsuarios = new ServicioUsuarios();
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Params = id, Body = datos de la habitacion
             let id = request.params.id
             let datosModificar = request.body
             //3. Conectarme al BD y mandar los datos recibidos para modificar
-            await ServicioUsuarios.modificar(id, datosModificar) // antes de la respuesta
+            await servicioUsuarios.modificar(id, datosModificar) // antes de la respuesta
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -68,7 +68,7 @@ export class ControladorUsuarios{
         }
     }
     async registrar(request,response){
-        let ServicioUsuarios = new ServicioUsuarios();
+        let servicioUsuarios = new ServicioUsuarios();
         try{
             //1. Hay que recibir datos? R: Si
             //2. Por donde se reciben los datos? Body = datos de la habitacion
@@ -76,7 +76,7 @@ export class ControladorUsuarios{
             //3. Conectarme al BD y registrar los datos
             // tomar 2 fechas del objeto datos
             // la diferencia en dias de esas dos fechas
-            await ServicioUsuarios.registrar(datosRegistrar)
+            await servicioUsuarios.registrar(datosRegistrar)
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
@@ -92,13 +92,13 @@ export class ControladorUsuarios{
         }
     }
     async eliminar(request,response){
-        let ServicioUsuarios = new ServicioUsuarios();
+        let servicioUsuarios = new ServicioUsuarios();
         try{
             //1. Hay que recibir datos? R:Si
             //2. Por donde se reciben los datos? Params = id
             let id = request.params.id
             //3. Conectarme al BD y eliminarlo
-            await ServicioUsuarios.eliminar(id); //eliminar
+            await servicioUsuarios.eliminar(id); //eliminar
             //4. Enviar la respuesta
             response.status(200).json({
                 "estado" : "true",
