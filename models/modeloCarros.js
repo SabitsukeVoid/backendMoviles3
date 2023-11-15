@@ -10,7 +10,7 @@ const Carros=new Schema({
         required:true
     },
     "state":{
-        type:String,
+        type:Boolean,
         required:true
     },
     "dailyvalue":{
